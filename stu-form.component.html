@@ -1,0 +1,62 @@
+<div class="alert alert-primary">
+    <h3>Student Form</h3>
+</div>
+
+
+<form [formGroup]="studentForm" (submit) = "addStudent()" >
+
+    <div class="form-group">
+        <div *ngIf="studentForm.controls.studentId.errors && 
+        (studentForm.controls.studentId.touched || studentForm.controls.studentId.dirty)">
+            Student Id Required
+        </div>
+
+        <label> Enter Student Id: </label>
+        <input type="number" class="form-control" name="studentId" id="studentId" formControlName="studentId">
+
+    </div>
+
+    <div class="form-group">
+
+        <div *ngIf="studentForm.controls.studentName.errors && 
+        (studentForm.controls.studentName.touched || studentForm.controls.studentName.dirty)">
+            Student Name Required
+        </div>
+
+        <label> Enter Student Name: </label>
+        <input type="text" class="form-control" name="studentName" id="studentName" formControlName="studentName">
+        
+    </div>
+
+    <div class="form-group">
+
+        <div *ngIf="studentForm.controls.studentEmail.errors && 
+        (studentForm.controls.studentEmail.touched || studentForm.controls.studentEmail.dirty)">
+            Student Email Required
+        </div>
+
+        <label> Enter Student Email: </label>
+        <input type="text" class="form-control" name="studentEmail" id="studentEmail" formControlName="studentEmail">
+        
+    </div>
+
+    <input type="submit" class="btn btn-success" value="Add Student" [disabled]="studentForm.invalid">
+</form>
+
+<table class="table table-bordered table-light table-hover ">
+    <tr *ngIf="students.length>0" class="thead-dark">
+        <th>Student Id</th>
+        <th>Student Name</th>
+        <th>Student Email</th>   
+    </tr>
+    
+    <tbody>
+
+        <tr *ngFor="let stu of students">
+            <td>{{stu.studentId}}</td>
+            <td>{{stu.studentName}}</td>
+            <td>{{stu.studentEmail}}</td>
+        </tr>
+    </tbody>
+   
+</table>
